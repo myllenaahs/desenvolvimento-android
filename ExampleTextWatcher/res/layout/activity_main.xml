@@ -26,4 +26,15 @@
         <requestFocus />
     </EditText>
 
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignLeft="@+id/texto"
+        android:layout_alignRight="@+id/texto"
+        android:layout_below="@+id/texto"
+        android:layout_marginLeft="35dp" >
+
+    </ListView>
+
 </RelativeLayout>
