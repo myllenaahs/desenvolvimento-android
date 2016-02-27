@@ -1,44 +1,69 @@
 package br.edu.ifpb.edittextlistenerapp.asynctask;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.apache.http.protocol.HttpService;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import br.edu.ifpb.edittextlistenerapp.util.HttpService;
 import br.edu.ifpb.edittextlistenerapp.util.Response;
 
 /**
  * Created by Rhavy on 24/02/2016.
  */
 public class BuscarNomesAsynctask extends AsyncTask<JSONObject, Void, Response> {
-	
 
-    @Override
-    protected Response doInBackground(JSONObject... jsons) {
-
-        Response response = null;
-
-        JSONObject json = jsons[0];
-        Log.i("EditTextListener", "doInBackground (JSON): " + json);
-
-        try {
-
-            response = HttpService.sendJSONPostResquest("get-byname", json);
-
-        } catch (IOException e) {
-
-            Log.e("EditTextListener", e.getMessage());
-        }
-
-        return response;
-    }
+	private List<String> nomes;
 
 	@Override
-    protected void onPostExecute(Response response) {
+	protected Response doInBackground(JSONObject... jsons) {
 
-        Log.i("EditTextListener", "Código HTTP: " + response.getStatusCodeHttp()
-                + " Conteúdo: " + response.getContentValue());
-    }
+		Response response = null;
+
+		JSONObject json = jsons[0];
+		Log.i("EditTextListener", "doInBackground (JSON): " + json);
+
+		try {
+
+			response = HttpService.sendJSONPostResquest("get-byname", json);
+
+		} catch (MalformedURLException e) {
+			Log.e("EditTextListener", e.getMessage());
+		} catch (IOException e) {
+
+			Log.e("EditTextListener", e.getMessage());
+		}
+
+		return response;
+	}
+
+	@Override
+	protected void onPostExecute(Response response) {
+
+		Log.i("EditTextListener",
+				"Código HTTP: " + response.getStatusCodeHttp() + " Conteúdo: "
+						+ response.getContentValue());
+
+		nomes = new ArrayList<String>();
+
+		try {
+			JSONArray jsonarray = new JSONArray(response.getContentValue());
+
+			for (int i=0; i < jsonarray.length(); i++) {
+				JSONObject json = jsonarray.getJSONObject(i);
+				String nome = json.getString("fullName");
+				nomes.add(nome);
+
+			}
+			
+		} catch (JSONException e) {
+			Log.e("LoginAsyncTask", "JSONException: " + e.getMessage());
+		}
+	}
 }
