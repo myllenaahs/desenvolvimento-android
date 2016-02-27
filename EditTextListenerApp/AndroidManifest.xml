@@ -14,13 +14,17 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="br.edu.ifpb.edittextlistenerapp.activity.BuscarNomesActivity"
+            android:name=".activity.BuscarNomesActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="br.edu.ifpb.edittextlistenerapp.activity.SplashActivity"
+            android:label="@string/title_activity_splash" >
         </activity>
     </application>
 
