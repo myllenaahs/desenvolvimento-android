@@ -29,12 +29,10 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".asynctask.BuscarNomesAsynctask"
-            android:label="@string/title_buscarnomesasyntask" >
+            android:name=".asynctask.BuscarNomesAsynctask">
         </activity>
         <activity
-            android:name=".listener.BuscarNomesListener"
-            android:label="@string/title_buscarnomeslistener" >
+            android:name=".listener.BuscarNomesListener">
         </activity>
     </application>
 
