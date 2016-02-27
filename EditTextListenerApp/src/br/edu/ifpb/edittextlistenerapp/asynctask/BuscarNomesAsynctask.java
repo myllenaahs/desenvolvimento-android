@@ -13,6 +13,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import br.edu.ifpb.edittextlistenerapp.util.HttpService;
 import br.edu.ifpb.edittextlistenerapp.util.Response;
+import br.edu.ifpb.edittextlistenerapp.activity.BuscarNomesActivity;
 
 /**
  * Created by Rhavy on 24/02/2016.
@@ -20,6 +21,7 @@ import br.edu.ifpb.edittextlistenerapp.util.Response;
 public class BuscarNomesAsynctask extends AsyncTask<JSONObject, Void, Response> {
 
 	private List<String> nomes;
+	BuscarNomesActivity busca;
 
 	@Override
 	protected Response doInBackground(JSONObject... jsons) {
@@ -59,8 +61,9 @@ public class BuscarNomesAsynctask extends AsyncTask<JSONObject, Void, Response> 
 				JSONObject json = jsonarray.getJSONObject(i);
 				String nome = json.getString("fullName");
 				nomes.add(nome);
-
 			}
+			
+			busca.buscarNome(nomes);
 			
 		} catch (JSONException e) {
 			Log.e("LoginAsyncTask", "JSONException: " + e.getMessage());

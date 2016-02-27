@@ -65,18 +65,13 @@ public class BuscarNomesActivity extends Activity implements TextWatcher {
         Log.i("EditTextListener", "onTextChanged: " + charSequence);
         String nome = charSequence.toString();
 
-        // Consultar o servidor. Criar o JSONObject e uma AsyncTask<JSONObject, Void, Response>
         try {
 
             if (nome.length() >= TAMANHO_MINIMO_TEXTO) {
-                // JSON
-                JSONObject json = new JSONObject();
-                json.put("fullName", nome);
-
+                JSONObject jsonNome = new JSONObject();
+                jsonNome.put("fullName", nome);
                 BuscarNomesAsynctask buscarNomeAsyncTask = new BuscarNomesAsynctask();
-                buscarNomeAsyncTask.execute(json);
-
-                // Adicionar ao ListView.
+                buscarNomeAsyncTask.execute(jsonNome);
                 nomes.add(nome);
                 adapter.notifyDataSetChanged();
             }
@@ -91,5 +86,10 @@ public class BuscarNomesActivity extends Activity implements TextWatcher {
     public void afterTextChanged(Editable editable) {
 
         Log.i("EditTextListener","afterTextChanged: " + editable);
+    }
+    
+    public void buscarNome(List<String> nomes) {
+        this.nomes.addAll(nomes);
+        adapter.notifyDataSetChanged();
     }
 }
