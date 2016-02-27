@@ -3,6 +3,6 @@
 
     <string name="app_name">EditTextListenerApp</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_splash">BuscarNomes</string>
 
 </resources>

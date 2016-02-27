@@ -22,6 +22,13 @@ public class BuscarNomesAsynctask extends AsyncTask<JSONObject, Void, Response> 
 
 	private List<String> nomes;
 	BuscarNomesActivity busca;
+	
+	
+
+	public BuscarNomesAsynctask(BuscarNomesActivity busca) {
+		super();
+		this.busca = busca;
+	}
 
 	@Override
 	protected Response doInBackground(JSONObject... jsons) {

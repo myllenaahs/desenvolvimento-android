@@ -70,7 +70,7 @@ public class BuscarNomesActivity extends Activity implements TextWatcher {
             if (nome.length() >= TAMANHO_MINIMO_TEXTO) {
                 JSONObject jsonNome = new JSONObject();
                 jsonNome.put("fullName", nome);
-                BuscarNomesAsynctask buscarNomeAsyncTask = new BuscarNomesAsynctask();
+                BuscarNomesAsynctask buscarNomeAsyncTask = new BuscarNomesAsynctask(this);
                 buscarNomeAsyncTask.execute(jsonNome);
                 nomes.add(nome);
                 adapter.notifyDataSetChanged();
