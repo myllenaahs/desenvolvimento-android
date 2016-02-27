@@ -1,11 +1,10 @@
 package br.edu.ifpb.edittextlistenerapp.activity;
 
-import br.edu.ifpb.edittextlistenerapp.R;
+import java.util.ArrayList;
+import java.util.List;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -15,19 +14,12 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import br.edu.ifpb.edittextlistenerapp.R;
 import br.edu.ifpb.edittextlistenerapp.asynctask.BuscarNomesAsynctask;
 
 public class BuscarNomesActivity extends Activity implements TextWatcher {
 
-    // Define o tamanho mínimo do texto para consulta no servidor.
-    private static int TAMANHO_MINIMO_TEXTO = 4;
+    private static int min = 4;
 
     private EditText nomeEditText;
     List<String> nomes;
@@ -36,11 +28,8 @@ public class BuscarNomesActivity extends Activity implements TextWatcher {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // Inicialização da activity e definição do layout.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_nomes);
-
-        // Recuperando o EditText e
         nomeEditText = (EditText) findViewById(R.id.nome);
         nomeEditText.addTextChangedListener(this);
 
@@ -67,12 +56,11 @@ public class BuscarNomesActivity extends Activity implements TextWatcher {
 
         try {
 
-            if (nome.length() >= TAMANHO_MINIMO_TEXTO) {
+            if (nome.length() >= min) {
                 JSONObject jsonNome = new JSONObject();
                 jsonNome.put("fullName", nome);
                 BuscarNomesAsynctask buscarNomeAsyncTask = new BuscarNomesAsynctask(this);
                 buscarNomeAsyncTask.execute(jsonNome);
-                nomes.add(nome);
                 adapter.notifyDataSetChanged();
             }
 

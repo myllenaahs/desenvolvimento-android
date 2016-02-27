@@ -1,29 +1,34 @@
 package br.edu.ifpb.edittextlistenerapp.listener;
 
+import java.util.List;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import br.edu.ifpb.edittextlistenerapp.asynctask.BuscarNomesAsynctask;
 
-/**
- * Created by Rhavy on 24/02/2016.
- */
 public class BuscarNomesListener implements TextWatcher {
+	
+	 
+	public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
 
-    @Override
-    public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
-        Log.i("EditTExtListener", "beforeTextChanged: " + charSequence);
+        Log.i("EditTextListener","beforeTextChanged: " + charSequence);
     }
 
     @Override
     public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-        Log.i("EditTExtListener","onTextChanged: " + charSequence);
-        
 
-
+       
     }
 
     @Override
     public void afterTextChanged(Editable editable) {
-        Log.i("EditTExtListener","afterTextChanged: " + editable);
+
+        Log.i("EditTextListener","afterTextChanged: " + editable);
     }
+    
 }

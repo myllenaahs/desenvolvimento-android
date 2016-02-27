@@ -11,9 +11,10 @@ import org.json.JSONObject;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import br.edu.ifpb.edittextlistenerapp.activity.BuscarNomesActivity;
+import br.edu.ifpb.edittextlistenerapp.listener.BuscarNomesListener;
 import br.edu.ifpb.edittextlistenerapp.util.HttpService;
 import br.edu.ifpb.edittextlistenerapp.util.Response;
-import br.edu.ifpb.edittextlistenerapp.activity.BuscarNomesActivity;
 
 /**
  * Created by Rhavy on 24/02/2016.
