@@ -1,5 +1,11 @@
 package br.edu.ifpb.edittextlistenerapp.activity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,18 +17,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import br.edu.ifpb.edittextlistenerapp.R;
 import br.edu.ifpb.edittextlistenerapp.adapter.PessoasCustomAdapter;
 import br.edu.ifpb.edittextlistenerapp.asynctask.BuscarNomeAsyncTask;
 import br.edu.ifpb.edittextlistenerapp.callback.BuscarPessoaCallBack;
 import br.edu.ifpb.edittextlistenerapp.entidade.Pessoa;
+
+import com.google.gson.Gson;
 
 public class BuscarNomeActivity extends Activity
         implements TextWatcher, OnItemClickListener, BuscarPessoaCallBack {
@@ -71,20 +72,17 @@ public class BuscarNomeActivity extends Activity
         String nome = charSequence.toString();
 
         // Consultar o servidor. Criar o JSONObject e uma AsyncTask<JSONObject, Void, Response>
-        try {
+        
 
             if (nome.length() >= TAMANHO_MINIMO_TEXTO) {
-                // JSON
-                JSONObject json = new JSONObject();
-                json.put("fullName", nome);
+                // Gson
+            	Gson gson = new Gson();
+            	String stringJSON = ("fullname" +gson.toJson(nome));                
                 BuscarNomeAsyncTask buscarNomeAsyncTask = new BuscarNomeAsyncTask(this);
-                buscarNomeAsyncTask.execute(json);
+                buscarNomeAsyncTask.execute(stringJSON);
             }
 
-        } catch (JSONException e) {
-
-            Log.e("EditTextListener", e.getMessage());
-        }
+        
     }
 
     @Override

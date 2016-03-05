@@ -23,7 +23,7 @@ import java.net.URL;
 public class HttpService {
 
     // IP da máquina onde se encontra o servidor. response
-    private static final String URL_CONTEXT = "http://192.168.1.245:8773/pesquisa-simpif-service/services/";
+    private static final String URL_CONTEXT = "http://ladoss.com.br:8773/pesquisa-simpif-service/services/";
 
     public static HttpURLConnection sendGetRequest(String service)
             throws MalformedURLException, IOException{
@@ -39,7 +39,7 @@ public class HttpService {
         return connection;
     }
 
-    public static Response sendJSONPostResquest(String service, JSONObject jsonObject)
+    public static Response sendJSONPostResquest(String service, String[] stringJSON)
             throws MalformedURLException, IOException {
 
         HttpURLConnection connection = null;
@@ -58,7 +58,7 @@ public class HttpService {
 
         DataOutputStream stream = new DataOutputStream(connection.getOutputStream());
 
-        stream.writeBytes(jsonObject.toString());
+        stream.writeBytes(stringJSON.toString());
         stream.flush();
         stream.close();
 
