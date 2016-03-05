@@ -5,6 +5,8 @@ import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+
 import android.os.AsyncTask;
 import android.util.Log;
 import br.edu.ifpb.edittextlistenerapp.callback.BuscarPessoaCallBack;
@@ -28,12 +30,10 @@ public class BuscarNomeAsyncTask extends AsyncTask<String, Void, Response> {
 	}
 
 	@Override
-	protected Response doInBackground(String... stringJSON) {
-
+	protected Response doInBackground(String... stringJSONs) {
 		Response response = null;
 
-		Gson gson = new Gson();
-
+		String stringJSON = stringJSONs[0];
 		Log.i("EditTextListener", "doInBackground (JSON): " + stringJSON);
 
 		try {
