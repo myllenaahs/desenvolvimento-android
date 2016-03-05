@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -29,8 +30,10 @@ public class BuscarNomeActivity extends Activity implements TextWatcher,
 
 	// Define o tamanho mínimo do texto para consulta no servidor.
 	private static int TAMANHO_MINIMO_TEXTO = 4;
-
+	private BuscarPessoaCallBack buscarNomeCallBack;
 	private EditText nomeEditText;
+	Pessoa pessoaDado = new Pessoa();
+
 	List<Pessoa> pessoas;
 	PessoasCustomAdapter adapter;
 
@@ -54,6 +57,7 @@ public class BuscarNomeActivity extends Activity implements TextWatcher,
 
 		// Evento de OnItemClickListener.
 		nomesListView.setOnItemClickListener(this);
+
 	}
 
 	// TextWatcher
@@ -100,6 +104,24 @@ public class BuscarNomeActivity extends Activity implements TextWatcher,
 			long id) {
 
 		Log.i("EditTextListener", "Position: " + position);
+		
+		Pessoa pessoa = new Pessoa ();
+		
+		pessoa = pessoas.get(position);
+		
+	   adapter.getItem(position);
+	   
+
+		
+		Intent it = new Intent(BuscarNomeActivity.this,
+				ExibeDadosActivity.class);
+		Bundle dados = new Bundle();
+		dados.putString("Nome",pessoa.getNome());
+		dados.putString("Email",pessoa.getEmail());
+		dados.putString("Inscricao", pessoa.getDescricao());
+		dados.putBoolean("Entregue", pessoa.isEntregue());
+		it.putExtras(dados);
+		startActivity(it);
 
 		Toast toast = Toast.makeText(this, "Item " + (position + 1) + ": "
 				+ pessoas.get(position), Toast.LENGTH_LONG);
@@ -113,7 +135,7 @@ public class BuscarNomeActivity extends Activity implements TextWatcher,
 		this.pessoas.clear();
 		this.pessoas.addAll(pessoas);
 		adapter.notifyDataSetChanged();
-	}
+}
 
 	@Override
 	public void errorBuscarNome(String error) {
