@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.json.JSONObject;
-
 import android.os.AsyncTask;
 import android.util.Log;
 import br.edu.ifpb.edittextlistenerapp.callback.BuscarPessoaCallBack;
@@ -37,7 +34,7 @@ public class BuscarNomeAsyncTask extends AsyncTask<String, Void, Response> {
 		Log.i("EditTextListener", "doInBackground (JSON): " + stringJSON);
 
 		try {
-
+			Log.e("NotificationWearApp", "erro do back " + stringJSON);
 			response = HttpService.sendJSONPostResquest("get-byname",
 					stringJSON);
 

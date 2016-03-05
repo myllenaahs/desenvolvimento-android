@@ -1,9 +1,6 @@
 package br.edu.ifpb.edittextlistenerapp.util;
 
 import android.util.Log;
-
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -39,7 +36,7 @@ public class HttpService {
 	}
 
 	public static Response sendJSONPostResquest(String service,
-			String... stringJSON) throws MalformedURLException, IOException {
+			String stringJSON) throws MalformedURLException, IOException {
 
 		HttpURLConnection connection = null;
 		Response response = null;
@@ -57,8 +54,9 @@ public class HttpService {
 
 		DataOutputStream stream = new DataOutputStream(
 				connection.getOutputStream());
-
+		Log.e("NotificationWearApp", "erro do http " + stringJSON);
 		stream.writeBytes(stringJSON.toString());
+		Log.e("NotificationWearApp", "erro do http " + stringJSON.toString());
 		stream.flush();
 		stream.close();
 
