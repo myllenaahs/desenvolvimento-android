@@ -24,6 +24,10 @@ public class ExibeDadosActivity extends Activity {
 		TextView email = (TextView) findViewById(R.id.email);
 		email.setText(dados.getString("Email"));
 		TextView entregue = (TextView) findViewById(R.id.entregue);
-		entregue.setText(dados.getString("Entregue"));
+		if(dados.getBoolean("Entregue")==false){
+			entregue.setText("Kit não entregue");
+		}else{
+			entregue.setText("Kit entregue");
+		}
 	}
 }
