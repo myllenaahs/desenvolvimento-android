@@ -78,7 +78,7 @@ public class HttpService {
 
 			if (connection.getResponseCode() <= HttpURLConnection.HTTP_BAD_REQUEST) {
 				content = connection.getInputStream();
-				Log.e("NotificationWearApp", "IOException: " + content);
+				Log.e("NotificationWearApp", "IOException : conection: " + content);
 			} else
 				content = connection.getErrorStream();
 
