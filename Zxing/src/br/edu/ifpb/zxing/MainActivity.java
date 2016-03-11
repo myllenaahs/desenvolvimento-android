@@ -23,9 +23,10 @@ public class MainActivity extends Activity {
 	}
 
 	public void callZXing(View view) {
-		Intent it = new Intent("com.google.zxing.client.android.SCAN");
-		startActivityForResult(it, REQUEST_CODE);
-		Log.i("App","Scan unsuccessful");
+		Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+		intent.setAction("com.google.zxing.client.android.SCAN");
+		intent.putExtra("SAVE_HISTORY", false);
+		startActivityForResult(intent, 0);
 	} 
 
 	@Override
