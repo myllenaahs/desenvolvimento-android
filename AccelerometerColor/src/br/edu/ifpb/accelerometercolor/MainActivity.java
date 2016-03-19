@@ -60,7 +60,7 @@ public class MainActivity extends Activity implements SensorEventListener {
         return;
       }
       lastUpdate = actualTime;
-      Toast.makeText(this, "Device was shuffed", Toast.LENGTH_SHORT)
+      Toast.makeText(this, "Sacudiu", Toast.LENGTH_SHORT)
           .show();
       if (color) {
         view.setBackgroundColor(Color.GREEN);
