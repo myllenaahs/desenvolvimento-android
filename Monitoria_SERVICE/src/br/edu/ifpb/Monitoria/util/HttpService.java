@@ -1,6 +1,5 @@
-package br.edu.ifpb.edittextlistenerapp.util;
+package br.edu.ifpb.Monitoria.util;
 
-import android.util.Log;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -9,6 +8,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import com.mysql.jdbc.log.Log;
 
 /**
  * Created by Rhavy on 14/12/2015.
@@ -19,10 +20,9 @@ import java.net.URL;
 public class HttpService {
 
 	// IP da máquina onde se encontra o servidor. response
-	private static final String URL_CONTEXT = "http://127.0.0.1:8080/Monitoria_SERVICE/services/";
+	private static final String URL_CONTEXT = "http://ladoss.com.br:8773/pesquisa-simpif-service/services/";
 
-	public static HttpURLConnection sendGetRequest(String service)
-			throws MalformedURLException, IOException {
+	public static HttpURLConnection sendGetRequest(String service) throws MalformedURLException, IOException {
 
 		HttpURLConnection connection = null;
 
@@ -35,8 +35,8 @@ public class HttpService {
 		return connection;
 	}
 
-	public static Response sendJSONPostResquest(String service,
-			String stringJSON) throws MalformedURLException, IOException {
+	public static Response sendJSONPostResquest(String service, String stringJSON)
+			throws MalformedURLException, IOException {
 
 		HttpURLConnection connection = null;
 		Response response = null;
@@ -52,11 +52,8 @@ public class HttpService {
 
 		connection.connect();
 
-		DataOutputStream stream = new DataOutputStream(
-				connection.getOutputStream());
-		Log.e("NotificationWearApp", "erro do http " + stringJSON);
+		DataOutputStream stream = new DataOutputStream(connection.getOutputStream());
 		stream.writeBytes(stringJSON.toString());
-		Log.e("NotificationWearApp", "erro do http " + stringJSON.toString());
 		stream.flush();
 		stream.close();
 
@@ -78,12 +75,10 @@ public class HttpService {
 
 			if (connection.getResponseCode() <= HttpURLConnection.HTTP_BAD_REQUEST) {
 				content = connection.getInputStream();
-				Log.e("NotificationWearApp", "IOException : conection: " + content);
 			} else
 				content = connection.getErrorStream();
 
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					content, "UTF-8"), 8);
+			BufferedReader reader = new BufferedReader(new InputStreamReader(content, "UTF-8"), 8);
 
 			String line;
 
@@ -94,7 +89,6 @@ public class HttpService {
 			content.close();
 
 		} catch (IOException e) {
-			Log.e("NotificationWearApp", "IOException: " + e);
 		}
 
 		return builder.toString();
